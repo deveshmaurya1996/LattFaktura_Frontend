@@ -85,5 +85,49 @@
     "ask_info": "Av naturliga orsaker måste vi spara, databehandla och flytta era data. Er information sparas tills vidare. Ni ger oss medgivande till att lagra, databehandla och flytta era data, samt att skicka er erbjudanden och liknande per email, brev och liknande, samt att informera andra om att ni är kund. Pga. sättet det fungerar på med programvara behöver medgivandet också ges till andra parter. Medgivandet ges därför till oss, samt till de företag och/eller person/personer som äger programvaran, källkod, hemsidan och liknande. Det ges också till nuvarande och framtida företag ägda och/eller kontrollerade av en eller flera av de som i dag äger och/eller kontrollerar oss. Det ges också till nuvarande och framtida personer (om några) som äger eller kommer till att äga programvaran, källkod, hemsidan och liknande. Detta både för nuvarande och framtida produkter och tjänster. Det ges också till ett annat företag, (som K-Soft Sverige AB), som vi kan använda för att skicka/sälja produkter, uppgraderingar och liknande, antingen genom att under förmedla programvaran eller på annat sätt.",
     "course_right": "Ni har självklart rätt att begära tillgång till, rättelse eller radering av informationen vi har om er. Ni har också rätt att begära begränsning av behandlingen av era uppgifter, eller att invända mot behandling samt rätten till dataportabilitet. Ni har självklart rätt att klaga till tillsynsmyndighet. Mer juridisk info om oss hittar ni <1>här</1>. Det är lagarna i Irland som är gällande lagar. Det är självklart helt frivilligt att lägga er order. Vi använder självklart inte någon automatiserad profilering och inte heller något automatiserat beslutsfattande.",
     "closing": "Om ni vill kontakta oss, vänligen använd då informationen på denna hemsidan. Klicka på Fakturera Nu för att registrera i enlighet med den information som ni har lagt in och villkoren här. (Datum och tidpunkt för inläggningen läggs in automatiskt i våra register.) Vår erfarenhet är att våra kunder är mycket nöjda med sättet vi arbetar på och vi hoppas och tror att det också kommer att bli er upplevelse.<br/> Ha en trevlig dag!"
+  },
+  "sidebar": {
+    "header": "Meny",
+    "invoices": "Fakturor",
+    "customer_register": "Kundregister",
+    "my_business": "Mitt Företag",
+    "invoice_journal": "Fakturajournal",
+    "price_list": "Prislista",
+    "multiple_invoicing": "Flerfakturering",
+    "unpaid_invoices": "Obetalda Fakturor",
+    "offer": "Erbjudande",
+    "inventory_control": "Lagerkontroll",
+    "member_invoicing": "Medlemsfakturering",
+    "import_export": "Import och Export",
+    "support": "Support",
+    "logout": "Logga Ut"
+  },
+  "authNavbar": {
+    "new_product": "Ny Produkt",
+    "print_list": "Skriv Ut Lista",
+    "advance_mode": "Avancerat Läge"
+  },
+  "priceList": {
+    "search_product": "Sök Produkt...",
+    "free_search": "Fri Sökning",
+    "new_product": "Ny Produkt",
+    "print_list": "Skriv Ut Lista",
+    "advance_mode": "Avancerat Läge",
+    "product_service": "Produkt / Tjänst",
+    "in_price": "Inköpspris",
+    "price": "Pris",
+    "in_stock": "I Lager",
+    "description": "Beskrivning",
+    "actions": "Åtgärder",
+    "edit_product": "Redigera Produkt",
+    "delete_product": "Radera Produkt",
+    "confirm_delete_title": "Bekräfta Radering",
+    "confirm_delete_message": "Är du säker på att du vill radera denna produkt?",
+    "confirm_delete_submessage": "Produkten kommer att raderas permanent om du väljer ja.",
+    "yes_delete": "Ja, Radera",
+    "cancel": "Avbryt",
+    "loading_more": "Laddar fler produkter...",
+    "server_error": "Servern är upptagen, försök igen senare.",
+    "delete_error": "Misslyckades med att radera produkten. Försök igen."
   }
 }

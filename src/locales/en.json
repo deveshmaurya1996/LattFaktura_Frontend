@@ -85,5 +85,49 @@
     "ask_info": "You can at any time ask not to be sent information about upgrades by email, letter or the like, and we will of course not do that. You send such a request to us by email, post or similar. For natural reasons, we have to store, process and move your data. Your information is stored until further notice. You give us permission to store, process and move your data, as well as to send you offers and the like by email, letter and the like, and tell others that you are customer. Due to the way it works with software, permission also needs to be given to other parties. The permission is therefore granted to us, as well as to the companies and/or person(s) who own the software, the source code, the website and the like. It is also given to current and future companies owned and/or controlled by one or more of those who currently own and/or control us. It is also given to current and future companies owned and/or controlled by one or more of those who currently own and/or control the companies (if any), which own or will own the software, source code, website and the like. It is also given to current and future persons (if any) who own or will own the software, source code, website and the like. This applies both to current and future products and services. It is also given to another company, (like K-Soft Sverige AB), which we can use to send/sell products, upgrades and the like, either by intermediation or otherwise.",
     "course_right": "You of course have the right to request access to, change and deletion of the information we hold about you. You also have the right to request restriction of data processing, and to object to data processing and the right to data portability. You have the right to complain to the supervisory authority. You can find more legal information about us <1>here</1>. The laws of Ireland are the applicable laws. Placing an order is of course completely voluntary. Of course, we do not use any automated profiling or decisions.",
     "closing": "If you wish to contact us, please use the information on this website. Click on Invoice Now to register according to the information you have entered and the terms here. (Date and time of admission are entered automatically in our registers.) Our experience is that our customers are very satisfied with the way we work and hope and believe that this will also be your experience. <br/> Have a great day!"
+  },
+  "sidebar": {
+    "header": "Menu",
+    "invoices": "Invoices",
+    "customer_register": "Customer Register",
+    "my_business": "My Business",
+    "invoice_journal": "Invoice Journal",
+    "price_list": "Price List",
+    "multiple_invoicing": "Multiple Invoicing",
+    "unpaid_invoices": "Unpaid Invoices",
+    "offer": "Offer",
+    "inventory_control": "Inventory Control",
+    "member_invoicing": "Member Invoicing",
+    "import_export": "Import and Export",
+    "support": "Support",
+    "logout": "Log Out"
+  },
+  "authNavbar": {
+    "new_product": "New Product",
+    "print_list": "Print List",
+    "advance_mode": "Advance Mode"
+  },
+  "priceList": {
+    "search_product": "Search Product...",
+    "free_search": "Free Search",
+    "new_product": "New Product",
+    "print_list": "Print List",
+    "advance_mode": "Advance Mode",
+    "product_service": "Product / Service",
+    "in_price": "In Price",
+    "price": "Price",
+    "in_stock": "In Stock",
+    "description": "Description",
+    "actions": "Actions",
+    "edit_product": "Edit Product",
+    "delete_product": "Delete Product",
+    "confirm_delete_title": "Confirm Delete",
+    "confirm_delete_message": "Are you sure you want to delete this product?",
+    "confirm_delete_submessage": "The product will be permanently deleted if you choose yes.",
+    "yes_delete": "Yes, Delete",
+    "cancel": "Cancel",
+    "loading_more": "Loading more products...",
+    "server_error": "Server busy, please try again later.",
+    "delete_error": "Failed to delete product. Please try again."
   }
 }

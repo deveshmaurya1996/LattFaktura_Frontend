@@ -17,101 +17,103 @@ import {
 } from "lucide-react";
 import "./Sidebar.css";
 import { useAuth } from "../../contexts/AuthContext";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 const Sidebar = ({ isOpen, onClose }) => {
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
   const { logout } = useAuth();
   const menuItems = [
     {
       id: "invoices",
-      label: "Invoices",
+      label: t("sidebar.invoices"),
       icon: Receipt,
       path: "/invoices",
       color: "blue",
     },
     {
       id: "customer-register",
-      label: "Customer register",
+      label: t("sidebar.customer_register"),
       icon: Users,
       path: "/customers",
       color: "teal",
     },
     {
       id: "my-business",
-      label: "My Business",
+      label: t("sidebar.my_business"),
       icon: Building2,
       path: "/myBusiness",
       color: "green",
     },
     {
       id: "invoice-journal",
-      label: "Invoice Journal",
+      label: t("sidebar.invoice_journal"),
       icon: BookOpen,
       path: "/journal",
       color: "orange",
     },
     {
       id: "price-list",
-      label: "Price List",
+      label: t("sidebar.price_list"),
       icon: DollarSign,
       path: "/pricelist",
       color: "cyan",
     },
     {
       id: "multiple-invoicing",
-      label: "Multiple Invoicing",
+      label: t("sidebar.multiple_invoicing"),
       icon: FileText,
       path: "/multiple-invoicing",
       color: "blue",
     },
     {
       id: "unpaid-invoices",
-      label: "Unpaid Invoices",
+      label: t("sidebar.unpaid_invoices"),
       icon: CreditCard,
       path: "/unpaid",
       color: "blue",
     },
     {
       id: "offer",
-      label: "Offer",
+      label: t("sidebar.offer"),
       icon: Tag,
       path: "/offers",
       color: "blue",
     },
     {
       id: "inventory-control",
-      label: "Inventory Control",
+      label: t("sidebar.inventory_control"),
       icon: Package,
       path: "/inventory",
       color: "orange",
     },
     {
       id: "member-invoicing",
-      label: "Member Invoicing",
+      label: t("sidebar.member_invoicing"),
       icon: UserPlus,
       path: "/member-invoicing",
       color: "teal",
     },
     {
       id: "import-export",
-      label: "Import and Export",
+      label: t("sidebar.import_export"),
       icon: Upload,
       path: "/import-export",
       color: "blue",
     },
     {
       id: "support",
-      label: "Support",
+      label: t("sidebar.support"),
       icon: HelpCircle,
       path: "/support",
       color: "orange",
     },
     {
       id: "logout",
-      label: "Log Out",
+      label: t("sidebar.logout"),
       icon: LogOut,
-      path: "/logout",
+      pathnibus: "/logout",
       color: "purple",
     },
   ];
@@ -139,7 +141,7 @@ const Sidebar = ({ isOpen, onClose }) => {
 
       <aside className={`sidebar ${isOpen ? "open" : ""}`}>
         <div className="sidebar-header">
-          <h2>Menu</h2>
+          <h2>{t("sidebar.header")}</h2>
         </div>
 
         <nav className="sidebar-nav">

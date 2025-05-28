@@ -1,8 +1,13 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./../styles/PriceList.css";
 import { Search } from "lucide-react";
+import { useInView } from "react-intersection-observer";
 import productService from "../api/productService";
 import { debounce } from "lodash";
+import CreateProductModal from "../components/ui/CreateProductModal";
+import EditProductModal from "../components/ui/EditProductModal";
+import DeleteConfirmationModal from "../components/ui/DeleteProductDialogue";
+import { useProductContext } from "../contexts/ProductContext";
 
 const PriceList = () => {
   const [products, setProducts] = useState([]);
@@ -13,29 +18,28 @@ const PriceList = () => {
   const [activeMenu, setActiveMenu] = useState(null);
   const [productSearch, setProductSearch] = useState("");
   const [freeSearch, setFreeSearch] = useState("");
-  const [editingProduct, setEditingProduct] = useState(null);
-  const [editFormData, setEditFormData] = useState({
-    name: "",
-    inPrice: "",
-    price: "",
-    inStock: "",
-    description: "",
+  const {
+    editingProduct,
+    setEditingProduct,
+    isCreating,
+    setIsCreating,
+    showDeleteConfirm,
+    setShowDeleteConfirm,
+    isDeleteLoading,
+    setIsDeleteLoading,
+  } = useProductContext();
+
+  // Intersection Observer hook
+  const { ref: lastProductRef, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: false,
   });
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(null);
-  const [isCreating, setIsCreating] = useState(false);
-  const [newProduct, setNewProduct] = useState({
-    name: "",
-    inPrice: "",
-    price: "",
-    inStock: "",
-    description: "",
-  });
+
   const [apiError, setApiError] = useState(null);
-  const observer = useRef();
 
   // Fetch products with infinite scroll
   const fetchProducts = useCallback(
-    async (reset = false, searchQuery = productSearch) => {
+    async (reset = false) => {
       if (loading || (!hasMore && !reset)) return;
       setLoading(true);
       setApiError(null);
@@ -44,7 +48,6 @@ const PriceList = () => {
         const data = await productService.getProducts({
           page: reset ? 1 : page,
           limit: 10,
-          search: searchQuery,
         });
 
         setProducts((prev) =>
@@ -61,52 +64,51 @@ const PriceList = () => {
     [loading, hasMore, page]
   );
 
-  // Infinite scroll observer
-  const lastProductRef = useCallback(
-    (node) => {
-      if (loading) return;
-      if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          fetchProducts();
-        }
-      });
-      if (node) observer.current.observe(node);
-    },
-    [loading, hasMore, fetchProducts]
-  );
+  // Trigger fetch when last element is in view
+  useEffect(() => {
+    if (inView && hasMore && !loading) {
+      fetchProducts();
+    }
+  }, [inView, hasMore, loading, fetchProducts]);
 
   // Initial load
   useEffect(() => {
     fetchProducts(true);
-  }, [productSearch]);
+  }, []);
 
-  const debouncedFetchProducts = useCallback(
-    debounce((searchQuery) => {
-      fetchProducts(true, searchQuery); // reset and use new search
+  // Debounced search function
+  const performSearch = useCallback(
+    debounce((productSearchValue, freeSearchValue) => {
+      const filtered = products.filter((product) => {
+        // Product name search (productSearch)
+        const matchesProductSearch =
+          productSearchValue === "" ||
+          product.product_name
+            .toLowerCase()
+            .includes(productSearchValue.toLowerCase());
+
+        // Free search across all fields (freeSearch)
+        const matchesFreeSearch =
+          freeSearchValue === "" ||
+          Object.entries(product).some(([key, value]) => {
+            if (key === "id") return false;
+            return String(value)
+              .toLowerCase()
+              .includes(freeSearchValue.toLowerCase());
+          });
+
+        return matchesProductSearch && matchesFreeSearch;
+      });
+      setFilteredProducts(filtered);
     }, 500),
-    [fetchProducts]
+    [products]
   );
 
+  // Trigger search when either search term changes
   useEffect(() => {
-    debouncedFetchProducts(productSearch);
-    // Cancel debounce on unmount
-    return () => debouncedFetchProducts.cancel();
-  }, [productSearch]);
-
-  // Search functionality
-  useEffect(() => {
-    const filtered = products.filter((product) => {
-      const matchesFreeSearch =
-        freeSearch === "" ||
-        Object.entries(product).some(([key, value]) => {
-          if (key === "id") return false;
-          return String(value).toLowerCase().includes(freeSearch.toLowerCase());
-        });
-      return matchesFreeSearch;
-    });
-    setFilteredProducts(filtered);
-  }, [products, freeSearch]);
+    performSearch(productSearch, freeSearch);
+    return () => performSearch.cancel();
+  }, [productSearch, freeSearch, performSearch]);
 
   // Handlers
   const toggleMenu = (productId, e) => {
@@ -116,71 +118,31 @@ const PriceList = () => {
 
   const handleEditClick = (product) => {
     setEditingProduct(product);
-    setEditFormData({
-      name: product.product_name,
-      inPrice: product.in_price,
-      price: product.price,
-      inStock: product.in_stock,
-      description: product.description,
-    });
     setActiveMenu(null);
   };
 
-  const handleEditFormChange = (e) => {
-    const { name, value } = e.target;
-    setEditFormData((prev) => ({ ...prev, [name]: value }));
+  const handleProductCreated = (newProduct) => {
+    setProducts((prev) => [newProduct, ...prev]);
   };
 
-  const handleNewProductChange = (e) => {
-    const { name, value } = e.target;
-    setNewProduct((prev) => ({ ...prev, [name]: value }));
+  const handleProductUpdated = (updatedProduct) => {
+    setProducts((prev) =>
+      prev.map((p) => (p.id === updatedProduct.id ? updatedProduct : p))
+    );
   };
 
-  const handleSave = async () => {
+  const handleDelete = async () => {
     setApiError(null);
-    try {
-      const updatedProduct = await productService.updateProduct(
-        editingProduct.id,
-        editFormData
-      );
-      if (updatedProduct.id) {
-        setProducts((prev) =>
-          prev.map((p) => (p.id === updatedProduct.id ? updatedProduct : p))
-        );
-        setEditingProduct(null);
-      }
-    } catch (error) {
-      setApiError("Failed to update product. Please try again.");
-    }
-  };
+    setIsDeleteLoading(true);
 
-  const handleCreate = async () => {
-    setApiError(null);
     try {
-      const createdProduct = await productService.createProduct(newProduct);
-      setProducts((prev) => [createdProduct, ...prev]);
-      setNewProduct({
-        name: "",
-        inPrice: "",
-        price: "",
-        inStock: "",
-        description: "",
-      });
-      setIsCreating(false);
-    } catch (error) {
-      setApiError("Failed to create product. Please try again.");
-    }
-  };
-
-  const handleDelete = async (productId) => {
-    setApiError(null);
-    try {
-      await productService.deleteProduct(productId);
-      setProducts((prev) => prev.filter((p) => p.id !== productId));
+      await productService.deleteProduct(showDeleteConfirm);
+      setProducts((prev) => prev.filter((p) => p.id !== showDeleteConfirm));
+      setShowDeleteConfirm(null);
     } catch (error) {
       setApiError("Failed to delete product. Please try again.");
     } finally {
-      setShowDeleteConfirm(null);
+      setIsDeleteLoading(false);
     }
   };
 
@@ -190,6 +152,21 @@ const PriceList = () => {
 
   const handleProductSearchChange = (e) => setProductSearch(e.target.value);
   const handleFreeSearchChange = (e) => setFreeSearch(e.target.value);
+
+  // Close modal handlers
+  const handleCloseEditModal = () => {
+    setEditingProduct(null);
+  };
+
+  const handleCloseCreateModal = () => {
+    setIsCreating(false);
+  };
+
+  const handleCloseDeleteModal = () => {
+    if (!isDeleteLoading) {
+      setShowDeleteConfirm(null);
+    }
+  };
 
   return (
     <div className="price-list-container" onClick={handleClickOutside}>
@@ -215,9 +192,6 @@ const PriceList = () => {
             />
             <Search className="search-icon" />
           </div>
-          <button className="create-button" onClick={() => setIsCreating(true)}>
-            Create Product
-          </button>
         </div>
       </div>
 
@@ -282,160 +256,33 @@ const PriceList = () => {
         {loading && <div className="loading">Loading more products...</div>}
       </div>
 
-      {/* Edit Product Modal */}
-      {editingProduct && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <h3>Edit Product</h3>
-            <div className="price-form-group">
-              <label>Product Name</label>
-              <input
-                type="text"
-                name="name"
-                value={editFormData.name}
-                onChange={handleEditFormChange}
-              />
-            </div>
-            <div className="price-form-group">
-              <label>In Price</label>
-              <input
-                type="number"
-                name="inPrice"
-                value={editFormData.inPrice}
-                onChange={handleEditFormChange}
-              />
-            </div>
-            <div className="price-form-group">
-              <label>Price</label>
-              <input
-                type="number"
-                name="price"
-                value={editFormData.price}
-                onChange={handleEditFormChange}
-              />
-            </div>
-            <div className="price-form-group">
-              <label>In Stock</label>
-              <input
-                type="number"
-                name="inStock"
-                value={editFormData.inStock}
-                onChange={handleEditFormChange}
-              />
-            </div>
-            <div className="price-form-group">
-              <label>Description</label>
-              <input
-                type="text"
-                name="description"
-                value={editFormData.description}
-                onChange={handleEditFormChange}
-              />
-            </div>
-            <div className="modal-actions">
-              <button className="save-button" onClick={handleSave}>
-                Save
-              </button>
-              <button
-                className="close-button"
-                onClick={() => setEditingProduct(null)}
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Create Product Modal */}
-      {isCreating && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <h3>Create New Product</h3>
-            <div className="price-form-group">
-              <label>Product Name</label>
-              <input
-                type="text"
-                name="name"
-                value={newProduct.name}
-                onChange={handleNewProductChange}
-              />
-            </div>
-            <div className="price-form-group">
-              <label>In Price</label>
-              <input
-                type="number"
-                name="inPrice"
-                value={newProduct.inPrice}
-                onChange={handleNewProductChange}
-              />
-            </div>
-            <div className="price-form-group">
-              <label>Price</label>
-              <input
-                type="number"
-                name="price"
-                value={newProduct.price}
-                onChange={handleNewProductChange}
-              />
-            </div>
-            <div className="price-form-group">
-              <label>In Stock</label>
-              <input
-                type="number"
-                name="inStock"
-                value={newProduct.inStock}
-                onChange={handleNewProductChange}
-              />
-            </div>
-            <div className="price-form-group">
-              <label>Description</label>
-              <input
-                type="text"
-                name="description"
-                value={newProduct.description}
-                onChange={handleNewProductChange}
-              />
-            </div>
-            <div className="modal-actions">
-              <button className="save-button" onClick={handleCreate}>
-                Create
-              </button>
-              <button
-                className="close-button"
-                onClick={() => setIsCreating(false)}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <CreateProductModal
+        isOpen={isCreating}
+        onClose={handleCloseCreateModal}
+        onProductCreated={handleProductCreated}
+      />
 
-      {/* Delete Confirmation Dialog */}
-      {showDeleteConfirm && (
-        <div className="modal-overlay">
-          <div className="modal-content confirm-dialog">
-            <h3>Confirm Delete</h3>
-            <p>Are you sure you want to delete this product?</p>
-            <p>The product will be permanently deleted if you choose yes.</p>
-            <div className="modal-actions">
-              <button
-                className="delete-button"
-                onClick={() => handleDelete(showDeleteConfirm)}
-              >
-                Yes, Delete
-              </button>
-              <button
-                className="close-button"
-                onClick={() => setShowDeleteConfirm(null)}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Edit Product Modal */}
+      <EditProductModal
+        isOpen={!!editingProduct}
+        onClose={handleCloseEditModal}
+        product={editingProduct}
+        onProductUpdated={handleProductUpdated}
+      />
+
+      {/* Delete Confirmation Modal */}
+      <DeleteConfirmationModal
+        isOpen={!!showDeleteConfirm}
+        onClose={handleCloseDeleteModal}
+        onConfirm={handleDelete}
+        title="Confirm Delete"
+        message="Are you sure you want to delete this product?"
+        subMessage="The product will be permanently deleted if you choose yes."
+        isLoading={isDeleteLoading}
+        confirmButtonText="Yes, Delete"
+        cancelButtonText="Cancel"
+      />
     </div>
   );
 };

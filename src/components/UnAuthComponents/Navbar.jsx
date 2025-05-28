@@ -43,17 +43,6 @@ const Navbar = () => {
             ))}
           </div>
 
-          {user && (
-            <div className="user-menu">
-              <span className="welcome-text">
-                {t("dashboard.welcome")}, {user.name}
-              </span>
-              <button onClick={logout} className="logout-btn">
-                {t("nav.logout")}
-              </button>
-            </div>
-          )}
-
           <div className="lang-selector">
             <button
               onClick={() => setShowLangDropdown(!showLangDropdown)}

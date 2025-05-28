@@ -17,6 +17,7 @@ import Layout from "./components/Layout/Layout";
 import MyBusiness from "./pages/MyBusiness";
 import PriceList from "./pages/PriceList";
 import AuthRoute from "./components/AuthRoute";
+import { ProductProvider } from "./contexts/ProductContext";
 
 const AppContent = () => {
   return (
@@ -51,7 +52,9 @@ const App = () => {
     <Router>
       <AuthProvider>
         <LanguageProvider>
-          <AppContent />
+          <ProductProvider>
+            <AppContent />
+          </ProductProvider>
         </LanguageProvider>
       </AuthProvider>
     </Router>

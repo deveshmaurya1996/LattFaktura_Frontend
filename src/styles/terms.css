@@ -16,7 +16,7 @@
   text-align: center;
 }
 
-.close-button {
+.terms-close-button {
   background: #0cb853;
   color: white;
   padding: 1.1rem 4.5rem;
@@ -29,7 +29,7 @@
   align-self: center;
 }
 
-.close-button:hover {
+.terms-close-button:hover {
   background: #26d466;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -59,7 +59,7 @@
     margin-top: 3rem;
   }
 
-  .close-button {
+  .terms-close-button {
     padding: 0.625rem 1.25rem;
     font-size: 0.9rem;
     width: 100%;
@@ -84,7 +84,7 @@
     margin-top: 2rem;
   }
 
-  .close-button {
+  .terms-close-button {
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
     width: 100%;

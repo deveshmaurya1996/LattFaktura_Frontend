@@ -82,39 +82,6 @@ const Dashboard = () => {
       </div>
 
       {/* Stats Grid */}
-      <div className="stats-grid">
-        {stats.map((stat, index) => {
-          const IconComponent = stat.icon;
-          return (
-            <div key={index} className="stat-card">
-              <div className="stat-header">
-                <div className="stat-info">
-                  <p className="stat-title">{stat.title}</p>
-                  <p className="stat-value">{stat.value}</p>
-                </div>
-                <div
-                  className="stat-icon"
-                  style={{
-                    backgroundColor: `${stat.color}20`,
-                    color: stat.color,
-                  }}
-                >
-                  <IconComponent size={24} />
-                </div>
-              </div>
-              <div className="stat-footer">
-                <span
-                  className="stat-change positive"
-                  style={{ color: stat.color }}
-                >
-                  {stat.change}
-                </span>
-                <span className="stat-period">from last month</span>
-              </div>
-            </div>
-          );
-        })}
-      </div>
 
       <div className="stats-grid">
         {stats.map((stat, index) => {

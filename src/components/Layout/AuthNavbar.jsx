@@ -1,35 +1,27 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import {
-  Menu,
-  X,
-  Search,
-  Settings,
-  FileText,
-  Receipt,
-  Globe,
-} from "lucide-react";
+import { Menu, X, List, Plus, Star } from "lucide-react";
 import "./AuthNavbar.css";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { images } from "../../constants/links";
+import { useProductContext } from "../../contexts/ProductContext";
 
 const Navbar = ({ onToggleSidebar, isSidebarOpen }) => {
   const navigate = useNavigate();
   const { language, changeLanguage, t } = useLanguage();
-  const [activeTab, setActiveTab] = useState("business-details");
+  const [activeTab, setActiveTab] = useState("new-product");
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
-
+  const { setIsCreating } = useProductContext();
   const topNavItems = [
-    { id: "business-details", label: "Business Details", icon: Search },
-    { id: "settings", label: "Settings", icon: Settings },
-    { id: "standard-texts", label: "Standard texts", icon: FileText },
-    { id: "invoices", label: "Go to invoices", icon: Receipt },
+    { id: "new-product", label: t("authNavbar.new_product"), icon: Plus },
+    { id: "print-list", label: t("authNavbar.print_list"), icon: List },
+    { id: "advance-mode", label: t("authNavbar.advance_mode"), icon: Star },
   ];
 
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
-    if (tabId === "invoices") {
-      navigate("/invoices");
+    if (tabId === "new-product") {
+      setIsCreating(true);
     } else {
       navigate(`/${tabId}`);
     }

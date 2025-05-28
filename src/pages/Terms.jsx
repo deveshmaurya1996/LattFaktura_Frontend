@@ -13,7 +13,7 @@ const Terms = () => {
       <div className="page-container">
         <div className="terms-page">
           <h1 className="terms-title"> {t("terms.title")}</h1>
-          <button className="close-button" onClick={() => navigate(-1)}>
+          <button className="terms-close-button" onClick={() => navigate(-1)}>
             {t("terms.closeButton")}
           </button>
           <div className="terms-container">
@@ -60,7 +60,7 @@ const Terms = () => {
             </p>
           </div>
 
-          <button className="close-button" onClick={() => navigate(-1)}>
+          <button className="terms-close-button" onClick={() => navigate(-1)}>
             {t("terms.closeButton")}
           </button>
         </div>
