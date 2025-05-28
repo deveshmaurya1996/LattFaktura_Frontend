@@ -1,25 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  Routes,
+  Route,
+  Navigate,
+  BrowserRouter as Router,
+} from "react-router-dom";
+import { LanguageProvider } from "./contexts/LanguageContext";
+import { AuthProvider } from "./contexts/AuthContext";
+import "./styles/global.css";
 
-function App() {
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+import Terms from "./pages/Terms";
+import { Us } from "./pages/Us";
+import Layout from "./components/Layout/Layout";
+import MyBusiness from "./pages/MyBusiness";
+import PriceList from "./pages/PriceList";
+import AuthRoute from "./components/AuthRoute";
+
+const AppContent = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <main className="container">
+        <Routes>
+          <Route element={<AuthRoute requireAuth={false} />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
+
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/us" element={<Us />} />
+
+          <Route element={<AuthRoute requireAuth={true} />}>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/myBusiness" element={<MyBusiness />} />
+              <Route path="/pricelist" element={<PriceList />} />
+            </Route>
+          </Route>
+
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </main>
     </div>
   );
-}
+};
+
+const App = () => {
+  return (
+    <Router>
+      <AuthProvider>
+        <LanguageProvider>
+          <AppContent />
+        </LanguageProvider>
+      </AuthProvider>
+    </Router>
+  );
+};
 
 export default App;

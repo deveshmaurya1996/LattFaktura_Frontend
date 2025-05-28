@@ -1,0 +1,146 @@
+.cards-container {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.card h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.inline-group {
+  display: flex;
+  gap: 10px;
+}
+
+.inline-group div {
+  flex: 1;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.toggle-btn,
+.action-btn,
+.preview-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.branding {
+  width: 80%;
+}
+
+.toggle-btn {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.toggle-btn.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.action-btn {
+  background-color: #f0f6ff;
+  color: #007bff;
+  border: 1px solid #007bff;
+}
+
+.preview-btn {
+  background-color: #007bff;
+  color: white;
+  width: 100%;
+}
+
+.logo-section,
+.profile-section {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.logo-section img {
+  flex: 1;
+}
+
+.profile-section img {
+  width: 150px;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+.logo-section span {
+  display: block;
+  font-size: 14px;
+  color: #333;
+}
+
+p {
+  font-size: 12px;
+  color: #666;
+}
+
+p a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card {
+    max-width: 100%;
+  }
+
+  .inline-group {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .card {
+    max-width: 45%;
+  }
+}
+
+@media (min-width: 1025px) {
+  .card {
+    max-width: 48%;
+  }
+}

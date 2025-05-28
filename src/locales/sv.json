@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "home": "Hem",
+    "order": "Beställa",
+    "ourCustomers": "Våra kunder",
+    "aboutUs": "Om oss",
+    "contactUs": "Kontakta oss",
+    "dashboard": "Instrumentpanel",
+    "logout": "Logga ut"
+  },
+  "auth": {
+    "login": "Logga in",
+    "businessName": "Företagsnamn",
+    "contactPerson": "Kontaktperson",
+    "address": "Adress",
+    "phoneNumber": "Mobil",
+    "postalNumber": "Postnummer",
+    "city": "Ort",
+    "register": "Registrera dig",
+    "enterEmail": "Ange din e-postadress",
+    "enterPassword": "Ange ditt lösenord",
+    "confirmPassword": "Bekräfta lösenord",
+    "forgotPassword": "Glömt lösenord?",
+    "email": "E-post",
+    "password": "Lösenord",
+    "loginButton": "Logga in",
+    "registerButton": "Registrera",
+    "switchToRegister": "Har du inget konto? Registrera",
+    "switchToLogin": "Har du redan ett konto? Logga in",
+    "loading": "Laddar...",
+    "loginFailed": "Inloggningen misslyckades. Försök igen.",
+    "registrationFailed": "Registreringen misslyckades. Försök igen.",
+    "note1": "Du kan använda och prova 123 Fakturera helt gratis i 14 dagar.",
+    "note2": "Detta är en äkta fullversion, så att du kan skicka 1000 fakturor eller mer, helt gratis.",
+    "note3": "123 Fakturera är så lätt och självförklarande att chansen för att du kommer att behöva support är minimal, men om du skulle behöva support, så är vi här för dig, med vårt kontor bemannat större delen av dygnet. Efter provperioden så fortsätter abonnemanget och kostar 99 kronor exkl. moms per månad, som faktureras årligen. Om du inte vill behålla programmet, så är det bara att avbryta provperioden genom att ge besked inom 14 dagar från i dag.",
+    "note4": "Klicka Fakturera Nu för att fakturera och för att godkänna <1>villkoren</1>, och din första faktura är normalt klar till att skickas inom 5-10 minuter."
+  },
+  "dashboard": {
+    "welcome": "Välkommen tillbaka",
+    "title": "Instrumentpanel",
+    "quickActions": "Snabbåtgärder",
+    "viewReports": "Visa rapporter",
+    "settings": "Inställningar",
+    "profile": "Profil"
+  },
+  "footer": {
+    "company": "123 Fakturera",
+    "copyright": "Lätt faktura, CRO nr. 638537, 2025. Alla rättigheter förbehållna.",
+    "links": {
+      "home": "Hem",
+      "order": "Beställa",
+      "contact": "Kontakta oss",
+      "privacy": "Integritetspolicy",
+      "terms": "Användarvillkor"
+    }
+  },
+  "common": {
+    "loading": "Laddar...",
+    "error": "Ett fel uppstod",
+    "success": "Framgång",
+    "cancel": "Avbryt",
+    "save": "Spara",
+    "delete": "Radera",
+    "edit": "Redigera",
+    "close": "Stäng"
+  },
+  "terms": {
+    "title": "Villkor",
+    "closeButton": "Stäng och gå tillbaka",
+    "intro": "GENOM ATT klicka på Fakturera Nu så väljer ni att registrera enligt den information som ni har lagt in och texten på registrerings sidan och villkoren här, och accepterar samtidigt villkoren här.",
+    "free_trial": "Ni kan använda programmet GRATIS i 14 dagar.",
+    "subscription": "123 Fakturera är så lätt och självförklarande att chansen för att du kommer behöva support är minimal, men om du skulle behöva support, så är vi här för dig, med vårt kontor bemannat större delen av dygnet. Efter provperioden så fortsätter abonnemanget och kostar 99 kronor exkl. moms per månad, som faktureras årligen. Om du inte vill behålla programmet, så är det bara att avbryta provperioden genom att ge oss besked inom 14 dagar från registrering.",
+    "termination_right": "Ni har självklart rätt att avsluta användningen av programmet utan kostnad, genom att ge oss besked per email inom 14 dagar från registrering, att ni inte vill fortsätta med programmet, och betalar då självklart inte heller något.",
+    "no_notice": "Om vi inte inom 14 dagar från registrering mottar sådant besked från er, så kan ordern av naturliga orsaker inte ändras. Med registrering menas det datum och klockslag då ni valde att trycka på knappen Fakturera Nu.",
+    "billing": "Fakturering sker för ett år i taget.",
+    "additional_modules": "Priset för 123 Fakturera (specialpris kr 99:- / ord. pris kr 159:- per månad) är för årsavgift Start för ett års användning av programmet.",
+    "registration_period": "(Vid användning av specialpriset kr 99:- så räknas ett års perioden från registrering.) <br/> Alla priser är exkl. moms.",
+    "offer": "Offert, Lagerstyrning, Medlemsfakturering, Fleranvändarversion och Engelsk utskrift är (eller kan vara) tilläggsmoduler som kan beställas senare.",
+    "intermediation": "Förmedling, samt fakturering kan komma att ske från K-Soft Sverige AB, Box 2826, 187 28 Täby. Vi kan i framtiden välja att samarbeta med annat företag för t.ex. förmedling och fakturering. Kundförhållandet är dock självklart med oss. Betalningen görs till det företag som fakturan kommer från.",
+    "renewal": "Årsavgiften är löpande men om ni inte vill fortsätta att använda programmet, så är det bara att ge besked trettio dagar innan ingången av nästföljande ett års period. Introduktionspriset (kr 99:- per månad) är för årsavgift Start för det första året. Efter det första året faktureras ord. pris vilket för närvarande är, för årsavgift Start, ett hundra och femtinio kronor per månad, för årsavgift Fjärrstyrning, tre hundra kronor per månad och för årsavgift Pro, tre hundra och trettiotre kronor per månad. Efter ett år faktureras årsavgift Fjärrstyrning som standard men ni kan välja Start eller Pro genom att ge besked när som helst innan förfallodagen.",
+    "pricing_details": "Om ni väljer att behålla programmet genom att inte ge oss besked per email innan 14 dagar från registrering, om att ni inte vill fortsätta med programmet, så accepterar ni att ni kommer att betala fakturan för er beställning. Att inte betala fakturan eller sen betalning ger inte rätt till att annullera beställningen. Vi hjälper gärna att fiksa logo för er till självkostpris. Licens för användning av 123 Fakturera säljs självklart enligt gällande lagar. För att lättare kunna hjälpa er och ge er support samt för att följa lagarna, måste vi av naturliga orsaker spara er information.",
+    "license": "Licens för användning av 123 Fakturera säljs självklart enligt gällande lagar. För att lättare kunna hjälpa er och ge er support samt för att följa lagarna, måste vi av naturliga orsaker spara er information.",
+    "additional": "I samband med lagring av information så kräver lagen att vi ger er följande information: Om ni beställer som privatperson så har ni den ångerrätt som lagen fastställer. Er information sparas så att vi kan hjälpa er m.m. Vi kommer använda den för att kunna hjälpa er om ni behöver hjälp, följa lagarna ang. bokföring m.m. När det kommer uppgraderingar och liknande, kan vi komma att skicka er erbjudande och liknande om våra produkter och tjänster per email eller liknande. Ni kan också komma att bli kontaktad per email, post och telefon.",
+    "private_person": "Om ni inte vill bli kontaktad, bara skicka oss en email ang. det. Ni kan när som helst begära att inte få tillsänt information om uppgraderingar per email, brev eller liknande och vi kommer då självklart inte att göra det. Sådan begäran skickar ni till oss per email, brev eller liknande.",
+    "ask_info": "Av naturliga orsaker måste vi spara, databehandla och flytta era data. Er information sparas tills vidare. Ni ger oss medgivande till att lagra, databehandla och flytta era data, samt att skicka er erbjudanden och liknande per email, brev och liknande, samt att informera andra om att ni är kund. Pga. sättet det fungerar på med programvara behöver medgivandet också ges till andra parter. Medgivandet ges därför till oss, samt till de företag och/eller person/personer som äger programvaran, källkod, hemsidan och liknande. Det ges också till nuvarande och framtida företag ägda och/eller kontrollerade av en eller flera av de som i dag äger och/eller kontrollerar oss. Det ges också till nuvarande och framtida personer (om några) som äger eller kommer till att äga programvaran, källkod, hemsidan och liknande. Detta både för nuvarande och framtida produkter och tjänster. Det ges också till ett annat företag, (som K-Soft Sverige AB), som vi kan använda för att skicka/sälja produkter, uppgraderingar och liknande, antingen genom att under förmedla programvaran eller på annat sätt.",
+    "course_right": "Ni har självklart rätt att begära tillgång till, rättelse eller radering av informationen vi har om er. Ni har också rätt att begära begränsning av behandlingen av era uppgifter, eller att invända mot behandling samt rätten till dataportabilitet. Ni har självklart rätt att klaga till tillsynsmyndighet. Mer juridisk info om oss hittar ni <1>här</1>. Det är lagarna i Irland som är gällande lagar. Det är självklart helt frivilligt att lägga er order. Vi använder självklart inte någon automatiserad profilering och inte heller något automatiserat beslutsfattande.",
+    "closing": "Om ni vill kontakta oss, vänligen använd då informationen på denna hemsidan. Klicka på Fakturera Nu för att registrera i enlighet med den information som ni har lagt in och villkoren här. (Datum och tidpunkt för inläggningen läggs in automatiskt i våra register.) Vår erfarenhet är att våra kunder är mycket nöjda med sättet vi arbetar på och vi hoppas och tror att det också kommer att bli er upplevelse.<br/> Ha en trevlig dag!"
+  }
+}
