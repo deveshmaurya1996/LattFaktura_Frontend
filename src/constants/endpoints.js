@@ -1,35 +1,34 @@
 if (!process.env.REACT_APP_BASE_URL) {
   console.error("API BASE URL is not defined in environment");
 }
-const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export const endpoints = {
   login: {
-    url: `${BASE_URL}/login`,
+    url: `/login`,
     method: "POST",
   },
   register: {
-    url: `${BASE_URL}/register`,
+    url: `/register`,
     method: "POST",
   },
   profile: {
-    url: `${BASE_URL}/profile`,
+    url: `/profile`,
     method: "GET",
   },
   getProducts: {
-    url: `${BASE_URL}/products`,
+    url: `/products`,
     method: "GET",
   },
   createProduct: {
-    url: `${BASE_URL}/product`,
+    url: `/product`,
     method: "POST",
   },
   updateProduct: (id) => ({
-    url: `${BASE_URL}/product/${id}`,
+    url: `/product/${id}`,
     method: "PUT",
   }),
   deleteProduct: (id) => ({
-    url: `${BASE_URL}/product/${id}`,
+    url: `/product/${id}`,
     method: "DELETE",
   }),
 };
