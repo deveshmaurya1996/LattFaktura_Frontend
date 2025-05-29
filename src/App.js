@@ -32,18 +32,21 @@ const AppContent = () => {
     pathname === "/us";
 
   return (
-    <div className="app">
-      <div
-        className="background-container"
-        style={{
-          backgroundImage: isAuthPage
-            ? "url(https://storage.123fakturera.se/public/wallpapers/sverige43.jpg)"
-            : "none",
-          backgroundColor: !isAuthPage ? "#f8fafc" : "transparent",
-        }}
-      />
-      <div className="content-container">
-        <main className={`container ${user ? "logged-in" : ""}`}>
+    <>
+      <div className="background-container">
+        {isAuthPage ? (
+          <img
+            id="background-image"
+            src="https://storage.123fakturera.se/public/wallpapers/sverige43.jpg"
+            alt="Background"
+          />
+        ) : (
+          <div id="background-image" style={{ backgroundColor: "#f8fafc" }} />
+        )}
+      </div>
+
+      <div className="app-content">
+        <main className={`main-container ${user ? "logged-in" : ""}`}>
           <Routes>
             <Route element={<AuthRoute requireAuth={false} />}>
               <Route path="/login" element={<Login />} />
@@ -65,7 +68,7 @@ const AppContent = () => {
           </Routes>
         </main>
       </div>
-    </div>
+    </>
   );
 };
 
