@@ -42,14 +42,9 @@ const AppContent = () => {
 
   return (
     <div
-      className={`app`}
+      className="app"
       style={{
         backgroundImage: backgroundImage,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-        minHeight: "100dvh",
       }}
     >
       <main className={`container ${user ? "logged-in" : ""}`}>

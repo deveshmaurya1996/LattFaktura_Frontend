@@ -34,15 +34,3 @@ body {
 .container.logged-in {
   max-width: 100%;
 }
-
-@supports (height: 100dvh) {
-  .app {
-    min-height: 100dvh;
-  }
-}
-
-@media (max-width: 768px) {
-  .app {
-    background-attachment: scroll;
-  }
-}
