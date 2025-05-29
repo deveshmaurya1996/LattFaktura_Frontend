@@ -14,28 +14,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
   color: #333;
+  background: url(https://storage.123fakturera.se/public/wallpapers/sverige43.jpg)
+    center/cover no-repeat fixed;
 }
 
 .app {
-  height: 100vh;
   height: 100dvh;
-  max-width: 100%;
-  background: #f8fafc;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  overflow-y: auto;
-  overflow-x: hidden;
+  width: 100%;
 }
 
 .container {
   flex: 1;
-  background: url(https://storage.123fakturera.se/public/wallpapers/sverige43.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  max-width: 1200px;
   margin: 0 auto;
 }
 

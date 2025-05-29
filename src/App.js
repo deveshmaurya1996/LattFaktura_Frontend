@@ -40,7 +40,12 @@ const AppContent = () => {
   }
 
   return (
-    <div className="app">
+    <div
+      className="app"
+      // style={{
+      //   backgroundImage: backgroundImage,
+      // }}
+    >
       <main className={`container ${user ? "logged-in" : ""}`}>
         <Routes>
           <Route element={<AuthRoute requireAuth={false} />}>
