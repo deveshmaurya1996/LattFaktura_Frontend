@@ -49,7 +49,7 @@ const AppContent = () => {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
-        minHeight: "100vh",
+        minHeight: "100dvh",
       }}
     >
       <main className={`container ${user ? "logged-in" : ""}`}>

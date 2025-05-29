@@ -17,7 +17,7 @@ body {
 }
 
 .app {
-  min-height: 100vh;
+  min-height: 100dvh;
   max-width: 100%;
   background-size: cover;
   background-position: center;
@@ -33,4 +33,10 @@ body {
 
 .container.logged-in {
   max-width: 100%;
+}
+
+@supports (height: 100dvh) {
+  .app {
+    min-height: 100dvh;
+  }
 }
