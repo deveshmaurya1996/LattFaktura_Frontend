@@ -14,14 +14,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
   color: #333;
-  background-color: red;
+  background: url(https://storage.123fakturera.se/public/wallpapers/sverige43.jpg)
+    center/cover no-repeat fixed;
 }
 
 .app {
   min-height: 100dvh;
   min-width: 100%;
-  /* background: url(https://storage.123fakturera.se/public/wallpapers/sverige43.jpg)
-    center/cover no-repeat fixed; */
 }
 
 .container {
