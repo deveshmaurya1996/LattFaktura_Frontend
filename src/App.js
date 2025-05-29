@@ -19,12 +19,12 @@ import MyBusiness from "./pages/MyBusiness";
 import PriceList from "./pages/PriceList";
 import AuthRoute from "./components/AuthRoute";
 import { ProductProvider } from "./contexts/ProductContext";
-
+import { useViewportHeight } from "./hook/useViewportHeight";
 const AppContent = () => {
   const { user } = useAuth();
   const location = useLocation();
   const { pathname } = location;
-
+  const vh = useViewportHeight();
   const isAuthPage =
     pathname === "/login" ||
     pathname === "/register" ||
@@ -35,6 +35,7 @@ const AppContent = () => {
     <div
       className="app"
       style={{
+        "--vh": `${vh}px`,
         backgroundImage: isAuthPage
           ? "url(https://storage.123fakturera.se/public/wallpapers/sverige43.jpg)"
           : "#f8fafc",
