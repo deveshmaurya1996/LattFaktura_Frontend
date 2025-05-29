@@ -6,9 +6,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/auth.css";
 import Navbar from "../components/UnAuthComponents/Navbar";
 import Footer from "../components/UnAuthComponents/Footer";
+import { useResizeBackground } from "../hook/useResizeBackground";
 
 const Login = () => {
   const { t } = useLanguage();
+  const bgRef = useResizeBackground();
   const { login, authError } = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -47,7 +49,7 @@ const Login = () => {
   return (
     <>
       <Navbar />
-      <div className="background-container">
+      <div ref={bgRef} className="background-container">
         <img
           id="background-image"
           src="https://storage.123fakturera.se/public/wallpapers/sverige43.jpg"

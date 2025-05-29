@@ -17,9 +17,11 @@ import "../styles/auth.css";
 import { Trans } from "react-i18next";
 import Footer from "../components/UnAuthComponents/Footer";
 import Navbar from "../components/UnAuthComponents/Navbar";
+import { useResizeBackground } from "../hook/useResizeBackground";
 
 const Register = () => {
   const { t } = useLanguage();
+  const bgRef = useResizeBackground();
   const { register, authError } = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -110,7 +112,7 @@ const Register = () => {
   return (
     <>
       <Navbar />
-      <div className="background-container">
+      <div ref={bgRef} className="background-container">
         <img
           id="background-image"
           src="https://storage.123fakturera.se/public/wallpapers/sverige43.jpg"
