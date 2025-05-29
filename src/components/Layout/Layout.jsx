@@ -5,28 +5,24 @@ import Sidebar from "./SideBar";
 import "./Layout.css";
 
 const Layout = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Default to true for desktop
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
   useEffect(() => {
     const checkScreenSize = () => {
-      const mobile = window.innerWidth < 768;
-      setIsMobile(mobile);
-
-      // Auto-close sidebar on mobile when screen size changes
-      if (mobile && isSidebarOpen) {
-        setIsSidebarOpen(false);
-      }
+      setIsDesktop(window.innerWidth >= 768);
     };
 
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
 
     return () => window.removeEventListener("resize", checkScreenSize);
-  }, [isSidebarOpen]);
+  }, []);
 
   const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+    if (isDesktop) {
+      setIsSidebarOpen(!isSidebarOpen);
+    }
   };
 
   const closeSidebar = () => {
@@ -36,11 +32,9 @@ const Layout = () => {
   return (
     <div className="layout">
       <Navbar onToggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
-
       <div className="layout-content">
-        <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
-
-        <main className={`main-content ${isSidebarOpen ? "sidebar-open" : ""}`}>
+        {isDesktop && <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />}
+        <main className="main-content">
           <div className="content-wrapper">
             <Outlet />
           </div>

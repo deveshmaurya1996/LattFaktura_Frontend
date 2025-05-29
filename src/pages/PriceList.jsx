@@ -8,8 +8,10 @@ import CreateProductModal from "../components/ui/CreateProductModal";
 import EditProductModal from "../components/ui/EditProductModal";
 import DeleteConfirmationModal from "../components/ui/DeleteProductDialogue";
 import { useProductContext } from "../contexts/ProductContext";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const PriceList = () => {
+  const { t } = useLanguage();
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -18,6 +20,7 @@ const PriceList = () => {
   const [activeMenu, setActiveMenu] = useState(null);
   const [productSearch, setProductSearch] = useState("");
   const [freeSearch, setFreeSearch] = useState("");
+
   const {
     editingProduct,
     setEditingProduct,
@@ -56,12 +59,12 @@ const PriceList = () => {
         setHasMore(data.currentPage < data.totalPages);
         setPage((prev) => (reset ? 2 : prev + 1));
       } catch (error) {
-        setApiError("Server busy, please try again later.");
+        setApiError(t("priceList.server_error"));
       } finally {
         setLoading(false);
       }
     },
-    [loading, hasMore, page]
+    [loading, hasMore, page, t]
   );
 
   // Trigger fetch when last element is in view
@@ -80,14 +83,12 @@ const PriceList = () => {
   const performSearch = useCallback(
     debounce((productSearchValue, freeSearchValue) => {
       const filtered = products.filter((product) => {
-        // Product name search (productSearch)
         const matchesProductSearch =
           productSearchValue === "" ||
           product.product_name
             .toLowerCase()
             .includes(productSearchValue.toLowerCase());
 
-        // Free search across all fields (freeSearch)
         const matchesFreeSearch =
           freeSearchValue === "" ||
           Object.entries(product).some(([key, value]) => {
@@ -140,7 +141,7 @@ const PriceList = () => {
       setProducts((prev) => prev.filter((p) => p.id !== showDeleteConfirm));
       setShowDeleteConfirm(null);
     } catch (error) {
-      setApiError("Failed to delete product. Please try again.");
+      setApiError(t("priceList.delete_error"));
     } finally {
       setIsDeleteLoading(false);
     }
@@ -153,7 +154,6 @@ const PriceList = () => {
   const handleProductSearchChange = (e) => setProductSearch(e.target.value);
   const handleFreeSearchChange = (e) => setFreeSearch(e.target.value);
 
-  // Close modal handlers
   const handleCloseEditModal = () => {
     setEditingProduct(null);
   };
@@ -175,7 +175,7 @@ const PriceList = () => {
           <div className="search-container">
             <input
               type="text"
-              placeholder="Search Product..."
+              placeholder={t("priceList.search_product")}
               className="search-input"
               value={productSearch}
               onChange={handleProductSearchChange}
@@ -185,7 +185,7 @@ const PriceList = () => {
           <div className="search-container">
             <input
               type="text"
-              placeholder="Free Search"
+              placeholder={t("priceList.free_search")}
               className="search-input"
               value={freeSearch}
               onChange={handleFreeSearchChange}
@@ -201,12 +201,12 @@ const PriceList = () => {
         <table className="price-list-table">
           <thead>
             <tr>
-              <th>Product / Service</th>
-              <th>In Price</th>
-              <th>Price</th>
-              <th>In Stock</th>
-              <th>Description</th>
-              <th>Actions</th>
+              <th>{t("priceList.product_service")}</th>
+              <th>{t("priceList.in_price")}</th>
+              <th>{t("priceList.price")}</th>
+              <th>{t("priceList.in_stock")}</th>
+              <th>{t("priceList.description")}</th>
+              <th>{t("priceList.actions")}</th>
             </tr>
           </thead>
           <tbody>
@@ -237,13 +237,13 @@ const PriceList = () => {
                           className="dropdown-item"
                           onClick={() => handleEditClick(product)}
                         >
-                          Edit Product
+                          {t("priceList.edit_product")}
                         </button>
                         <button
                           className="dropdown-item delete"
                           onClick={() => setShowDeleteConfirm(product.id)}
                         >
-                          Delete Product
+                          {t("priceList.delete_product")}
                         </button>
                       </div>
                     )}
@@ -253,17 +253,17 @@ const PriceList = () => {
             ))}
           </tbody>
         </table>
-        {loading && <div className="loading">Loading more products...</div>}
+        {loading && (
+          <div className="loading">{t("priceList.loading_more")}</div>
+        )}
       </div>
 
-      {/* Create Product Modal */}
       <CreateProductModal
         isOpen={isCreating}
         onClose={handleCloseCreateModal}
         onProductCreated={handleProductCreated}
       />
 
-      {/* Edit Product Modal */}
       <EditProductModal
         isOpen={!!editingProduct}
         onClose={handleCloseEditModal}
@@ -271,17 +271,16 @@ const PriceList = () => {
         onProductUpdated={handleProductUpdated}
       />
 
-      {/* Delete Confirmation Modal */}
       <DeleteConfirmationModal
         isOpen={!!showDeleteConfirm}
         onClose={handleCloseDeleteModal}
         onConfirm={handleDelete}
-        title="Confirm Delete"
-        message="Are you sure you want to delete this product?"
-        subMessage="The product will be permanently deleted if you choose yes."
+        title={t("priceList.confirm_delete_title")}
+        message={t("priceList.confirm_delete_message")}
+        subMessage={t("priceList.confirm_delete_submessage")}
         isLoading={isDeleteLoading}
-        confirmButtonText="Yes, Delete"
-        cancelButtonText="Cancel"
+        confirmButtonText={t("priceList.yes_delete")}
+        cancelButtonText={t("priceList.cancel")}
       />
     </div>
   );

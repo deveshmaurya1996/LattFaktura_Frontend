@@ -24,6 +24,7 @@ const Sidebar = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { logout } = useAuth();
+
   const menuItems = [
     {
       id: "invoices",
@@ -113,7 +114,7 @@ const Sidebar = ({ isOpen, onClose }) => {
       id: "logout",
       label: t("sidebar.logout"),
       icon: LogOut,
-      pathnibus: "/logout",
+      path: "/logout",
       color: "purple",
     },
   ];
@@ -124,26 +125,26 @@ const Sidebar = ({ isOpen, onClose }) => {
     } else {
       navigate(item.path);
     }
-    // Close sidebar on mobile after navigation
     if (window.innerWidth < 768) {
-      onClose();
+      onClose(); // Close sidebar on mobile/tablet after navigation
     }
   };
 
-  const isActive = (path) => {
-    return location.pathname === path;
-  };
+  const isActive = (path) => location.pathname === path;
 
   return (
     <>
-      {/* Overlay for mobile */}
-      {isOpen && <div className="sidebar-overlay" onClick={onClose} />}
-
-      <aside className={`sidebar ${isOpen ? "open" : ""}`}>
+      {isOpen && window.innerWidth < 768 && (
+        <div className="sidebar-overlay" onClick={onClose} />
+      )}
+      <aside
+        className={`sidebar ${
+          isOpen || window.innerWidth >= 768 ? "open" : ""
+        }`}
+      >
         <div className="sidebar-header">
           <h2>{t("sidebar.header")}</h2>
         </div>
-
         <nav className="sidebar-nav">
           <ul className="sidebar-menu">
             {menuItems.map((item) => {
@@ -158,7 +159,6 @@ const Sidebar = ({ isOpen, onClose }) => {
                   >
                     <div className="sidebar-icon-wrapper">
                       <div className={active ? "active-dot" : "inactive-dot"} />
-
                       <div
                         className={`sidebar-icon ${item.color}`}
                         data-active={active}
