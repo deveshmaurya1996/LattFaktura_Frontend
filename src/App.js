@@ -41,8 +41,7 @@ const AppContent = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        backgroundAttachment: isAuthPage ? "fixed" : "local",
-        minHeight: "100%",
+        backgroundAttachment: "fixed",
       }}
     >
       <main className={`container ${user ? "logged-in" : ""}`}>
