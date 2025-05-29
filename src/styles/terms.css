@@ -56,7 +56,7 @@
 @media (max-width: 768px) {
   .terms-page {
     padding: 1.5rem;
-    margin-top: 3rem;
+    gap: 2rem;
   }
 
   .terms-close-button {
@@ -81,11 +81,10 @@
 @media (max-width: 480px) {
   .terms-page {
     padding: 1rem;
-    margin-top: 2rem;
   }
 
   .terms-close-button {
-    padding: 0.5rem 1rem;
+    padding: 1rem 1rem;
     font-size: 0.875rem;
     width: 100%;
   }
