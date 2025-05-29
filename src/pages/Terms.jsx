@@ -60,11 +60,7 @@ const Terms = () => {
             </p>
           </div>
 
-          <button
-            className="terms-close-button"
-            style={{ marginBottom: "50px" }}
-            onClick={() => navigate(-1)}
-          >
+          <button className="terms-close-button" onClick={() => navigate(-1)}>
             {t("terms.closeButton")}
           </button>
         </div>
