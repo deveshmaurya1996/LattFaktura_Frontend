@@ -3,16 +3,16 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../styles/terms.css";
 import { Trans } from "react-i18next";
 import Navbar from "../components/UnAuthComponents/Navbar";
-import { isAuthPage } from "../constants/links";
+import { useResizeBackground } from "../hook/useResizeBackground";
 
 const Terms = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
-
+  const bgRef = useResizeBackground();
   return (
     <>
       <Navbar />
-      <div className="background-container">
+      <div ref={bgRef} className="background-container">
         <img
           id="background-image"
           src="https://storage.123fakturera.se/public/wallpapers/sverige43.jpg"
