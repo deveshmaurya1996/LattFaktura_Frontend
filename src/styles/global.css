@@ -6,14 +6,6 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -24,24 +16,17 @@ body {
   color: #333;
   /* background: url(https://storage.123fakturera.se/public/wallpapers/sverige43.jpg)
     center/cover no-repeat fixed; */
-  background-color: red;
 }
 
 .app {
-  position: fixed; /* This is the key change */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow-y: auto; /* Allows scrolling */
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  min-height: 100dvh;
+  min-width: 100%;
 }
 
 .container {
   flex: 1;
   max-width: 1200px;
   margin: 0 auto;
-  max-height: 100vh;
 }
 
 .container.logged-in {
