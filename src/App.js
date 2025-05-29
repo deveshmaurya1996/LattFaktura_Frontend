@@ -32,39 +32,39 @@ const AppContent = () => {
     pathname === "/us";
 
   return (
-    <div
-      className="app"
-      style={{
-        backgroundImage: isAuthPage
-          ? "url(https://storage.123fakturera.se/public/wallpapers/sverige43.jpg)"
-          : "#f8fafc",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-      }}
-    >
-      <main className={`container ${user ? "logged-in" : ""}`}>
-        <Routes>
-          <Route element={<AuthRoute requireAuth={false} />}>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Route>
-
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/us" element={<Us />} />
-
-          <Route element={<AuthRoute requireAuth={true} />}>
-            <Route element={<Layout />}>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/myBusiness" element={<MyBusiness />} />
-              <Route path="/pricelist" element={<PriceList />} />
+    <div className="app">
+      <div
+        className="background-container"
+        style={{
+          backgroundImage: isAuthPage
+            ? "url(https://storage.123fakturera.se/public/wallpapers/sverige43.jpg)"
+            : "none",
+          backgroundColor: !isAuthPage ? "#f8fafc" : "transparent",
+        }}
+      />
+      <div className="content-container">
+        <main className={`container ${user ? "logged-in" : ""}`}>
+          <Routes>
+            <Route element={<AuthRoute requireAuth={false} />}>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
             </Route>
-          </Route>
 
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </main>
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/us" element={<Us />} />
+
+            <Route element={<AuthRoute requireAuth={true} />}>
+              <Route element={<Layout />}>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/myBusiness" element={<MyBusiness />} />
+                <Route path="/pricelist" element={<PriceList />} />
+              </Route>
+            </Route>
+
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
+      </div>
     </div>
   );
 };
