@@ -40,3 +40,9 @@ body {
     min-height: 100dvh;
   }
 }
+
+@media (max-width: 768px) {
+  .app {
+    background-attachment: scroll;
+  }
+}
