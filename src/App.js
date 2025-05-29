@@ -39,8 +39,9 @@ const AppContent = () => {
           ? "url(https://storage.123fakturera.se/public/wallpapers/sverige43.jpg)"
           : "#f8fafc",
         backgroundSize: "cover",
+        backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
+        backgroundAttachment: isAuthPage ? "fixed" : "local",
         minHeight: "100dvh",
       }}
     >
