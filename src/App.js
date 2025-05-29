@@ -25,26 +25,24 @@ const AppContent = () => {
   const location = useLocation();
   const { pathname } = location;
 
-  let backgroundImage;
-
-  if (
+  const isAuthPage =
     pathname === "/login" ||
     pathname === "/register" ||
     pathname === "/terms" ||
-    pathname === "/us"
-  ) {
-    backgroundImage =
-      "url(https://storage.123fakturera.se/public/wallpapers/sverige43.jpg)";
-  } else {
-    backgroundImage = "#f8fafc";
-  }
+    pathname === "/us";
 
   return (
     <div
       className="app"
-      // style={{
-      //   backgroundImage: backgroundImage,
-      // }}
+      style={{
+        backgroundImage: isAuthPage
+          ? "url(https://storage.123fakturera.se/public/wallpapers/sverige43.jpg)"
+          : "#f8fafc",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        minHeight: "100dvh",
+      }}
     >
       <main className={`container ${user ? "logged-in" : ""}`}>
         <Routes>
