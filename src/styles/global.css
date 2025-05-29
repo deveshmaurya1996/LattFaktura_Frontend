@@ -30,3 +30,9 @@ body {
 .container.logged-in {
   max-width: 100%;
 }
+
+@supports (height: 100dvh) {
+  .app {
+    height: -webkit-fill-available;
+  }
+}
