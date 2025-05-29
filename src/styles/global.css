@@ -17,12 +17,19 @@ body {
 }
 
 .app {
-  min-height: 100dvh;
+  min-height: calc(var(--vh, 1vh) * 100);
   max-width: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.app::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url(https://storage.123fakturera.se/public/wallpapers/sverige43.jpg)
+    center/cover no-repeat;
+  z-index: -1;
 }
 
 .container {
