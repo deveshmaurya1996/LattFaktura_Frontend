@@ -4,6 +4,8 @@ import { useTranslation, initReactI18next } from "react-i18next";
 
 import enTranslations from "../locales/en.json";
 import svTranslations from "../locales/sv.json";
+import { endpoints } from "../constants/endpoints";
+import axiosInstance from "../lib/axiosInstance";
 
 // Initialize i18n once (not on every render)
 if (!i18n.isInitialized) {
@@ -25,10 +27,26 @@ export const LanguageProvider = ({ children }) => {
   const { t, i18n } = useTranslation();
   const [language, setLanguage] = useState(i18n.language);
 
-  const changeLanguage = (lang) => {
-    i18n.changeLanguage(lang);
-    localStorage.setItem("language", lang);
-    setLanguage(lang);
+  const changeLanguagePreference = async (languagePreference) => {
+    try {
+      const response = await axiosInstance.patch(endpoints.languageChange.url, {
+        languagePreference,
+      });
+      return response.data;
+    } catch (error) {
+      console.error(
+        "Error updating language preference:",
+        error.response?.data || error.message
+      );
+      throw error;
+    }
+  };
+
+  const changeLanguage = async (lang) => {
+    const language = await changeLanguagePreference(lang);
+    i18n.changeLanguage(language.languagePreference);
+    localStorage.setItem("language", language.languagePreference);
+    setLanguage(language.languagePreference);
   };
 
   useEffect(() => {

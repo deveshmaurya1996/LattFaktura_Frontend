@@ -31,4 +31,8 @@ export const endpoints = {
     url: `/product/${id}`,
     method: "DELETE",
   }),
+  languageChange: {
+    url: `/language`,
+    method: "PATCH",
+  },
 };
