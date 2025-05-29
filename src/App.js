@@ -3,6 +3,7 @@ import {
   Route,
   Navigate,
   BrowserRouter as Router,
+  useLocation,
 } from "react-router-dom";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
@@ -18,46 +19,33 @@ import MyBusiness from "./pages/MyBusiness";
 import PriceList from "./pages/PriceList";
 import AuthRoute from "./components/AuthRoute";
 import { ProductProvider } from "./contexts/ProductContext";
-import { useEffect } from "react";
-
-const useViewportHeight = () => {
-  useEffect(() => {
-    const setVH = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
-    };
-
-    // Set initial value
-    setVH();
-
-    // Update on resize and orientation change
-    window.addEventListener("resize", setVH);
-    window.addEventListener("orientationchange", setVH);
-
-    // Handle mobile browser address bar show/hide
-    let resizeTimer;
-    const handleResize = () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(setVH, 100); // Debounce resize events
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup
-    return () => {
-      window.removeEventListener("resize", setVH);
-      window.removeEventListener("orientationchange", setVH);
-      window.removeEventListener("resize", handleResize);
-      clearTimeout(resizeTimer);
-    };
-  }, []);
-};
 
 const AppContent = () => {
   const { user } = useAuth();
-  useViewportHeight();
+  const location = useLocation();
+  const { pathname } = location;
+
+  let backgroundImage;
+
+  if (
+    pathname === "/login" ||
+    pathname === "/register" ||
+    pathname === "/terms" ||
+    pathname === "/us"
+  ) {
+    backgroundImage =
+      "url(https://storage.123fakturera.se/public/wallpapers/sverige43.jpg)";
+  } else {
+    backgroundImage = "#f8fafc";
+  }
+
   return (
-    <div className="app">
+    <div
+      className="app"
+      style={{
+        backgroundImage: backgroundImage,
+      }}
+    >
       <main className={`container ${user ? "logged-in" : ""}`}>
         <Routes>
           <Route element={<AuthRoute requireAuth={false} />}>
