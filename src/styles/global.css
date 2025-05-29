@@ -19,19 +19,12 @@ body {
 .app {
   min-height: 100vh;
   max-width: 100%;
-  background: url("https://storage.123fakturera.se/public/wallpapers/sverige43.jpg")
-    center/cover no-repeat fixed;
-}
-
-.app.logged-in {
-  background: #f8fafc;
 }
 
 .container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
   min-height: 100vh;
 }
 

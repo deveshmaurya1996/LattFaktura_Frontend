@@ -3,6 +3,7 @@ import {
   Route,
   Navigate,
   BrowserRouter as Router,
+  useLocation,
 } from "react-router-dom";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
@@ -21,8 +22,36 @@ import { ProductProvider } from "./contexts/ProductContext";
 
 const AppContent = () => {
   const { user } = useAuth();
+
+  const location = useLocation();
+  const { pathname } = location;
+
+  let backgroundImage;
+
+  if (
+    pathname === "/login" ||
+    pathname === "/register" ||
+    pathname === "/terms" ||
+    pathname === "/us"
+  ) {
+    backgroundImage =
+      "url(https://storage.123fakturera.se/public/wallpapers/sverige43.jpg)";
+  } else {
+    backgroundImage = "#f8fafc";
+  }
+
   return (
-    <div className={`app ${user ? "logged-in" : ""}`}>
+    <div
+      className={`app`}
+      style={{
+        backgroundImage: backgroundImage,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        minHeight: "100vh",
+      }}
+    >
       <main className={`container ${user ? "logged-in" : ""}`}>
         <Routes>
           <Route element={<AuthRoute requireAuth={false} />}>
