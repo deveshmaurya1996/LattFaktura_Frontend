@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useAuth } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/auth.css";
 import Navbar from "../components/UnAuthComponents/Navbar";
 import Footer from "../components/UnAuthComponents/Footer";
@@ -47,6 +47,13 @@ const Login = () => {
   return (
     <>
       <Navbar />
+      <div className="background-container">
+        <img
+          id="background-image"
+          src="https://storage.123fakturera.se/public/wallpapers/sverige43.jpg"
+          alt="Background"
+        />
+      </div>
       <div className="page-container">
         <div className="auth-form">
           <div className="auth-header">

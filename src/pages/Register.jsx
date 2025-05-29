@@ -110,6 +110,13 @@ const Register = () => {
   return (
     <>
       <Navbar />
+      <div className="background-container">
+        <img
+          id="background-image"
+          src="https://storage.123fakturera.se/public/wallpapers/sverige43.jpg"
+          alt="Background"
+        />
+      </div>
       <div className="page-container">
         <div className="auth-form">
           <div className="auth-header">

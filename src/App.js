@@ -22,29 +22,9 @@ import { ProductProvider } from "./contexts/ProductContext";
 
 const AppContent = () => {
   const { user } = useAuth();
-  const location = useLocation();
-  const { pathname } = location;
-
-  const isAuthPage =
-    pathname === "/login" ||
-    pathname === "/register" ||
-    pathname === "/terms" ||
-    pathname === "/us";
 
   return (
     <>
-      <div className="background-container">
-        {isAuthPage ? (
-          <img
-            id="background-image"
-            src="https://storage.123fakturera.se/public/wallpapers/sverige43.jpg"
-            alt="Background"
-          />
-        ) : (
-          <div id="background-image" style={{ backgroundColor: "#f8fafc" }} />
-        )}
-      </div>
-
       <div className="app-content">
         <main className={`main-container ${user ? "logged-in" : ""}`}>
           <Routes>

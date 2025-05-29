@@ -1,15 +1,24 @@
 import { useLanguage } from "../contexts/LanguageContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../styles/terms.css";
 import { Trans } from "react-i18next";
 import Navbar from "../components/UnAuthComponents/Navbar";
+import { isAuthPage } from "../constants/links";
 
 const Terms = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
+
   return (
     <>
       <Navbar />
+      <div className="background-container">
+        <img
+          id="background-image"
+          src="https://storage.123fakturera.se/public/wallpapers/sverige43.jpg"
+          alt="Background"
+        />
+      </div>
       <div className="page-container">
         <div className="terms-page">
           <h1 className="terms-title"> {t("terms.title")}</h1>
