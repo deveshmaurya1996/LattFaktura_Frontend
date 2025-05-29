@@ -1,6 +1,5 @@
 .layout {
   min-height: 100vh;
-  background: #f8fafc;
 }
 
 .layout-content {
@@ -10,7 +9,6 @@
 
 .main-content {
   flex: 1;
-  /* padding: 1rem; */
 }
 
 .content-wrapper {
@@ -18,11 +16,11 @@
 }
 
 /* Desktop */
-/* @media (min-width: 768px) {
+@media (min-width: 768px) {
   .main-content {
-    margin-left: 250px; 
+    margin-left: 250px;
   }
-} */
+}
 
 /* Tablet and Mobile */
 @media (max-width: 767px) {

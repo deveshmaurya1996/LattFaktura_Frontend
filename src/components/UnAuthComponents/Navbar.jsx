@@ -31,7 +31,6 @@ const Navbar = () => {
       <div className="nav-container">
         <div className="logo" onClick={() => navigate("/")}>
           <img src={images.logo} alt="Logo" className="logo-img" />
-          {/* <span className="logo-text">{t("footer.company")}</span> */}
         </div>
 
         <div className="nav-right">
@@ -42,6 +41,15 @@ const Navbar = () => {
               </Link>
             ))}
           </div>
+
+          <button
+            className="mobile-menu-btn"
+            onClick={() => setShowMobileMenu(!showMobileMenu)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
 
           <div className="lang-selector">
             <button
@@ -86,15 +94,6 @@ const Navbar = () => {
               </div>
             )}
           </div>
-
-          <button
-            className="mobile-menu-btn"
-            onClick={() => setShowMobileMenu(!showMobileMenu)}
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
         </div>
       </div>
 

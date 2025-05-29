@@ -1,7 +1,8 @@
 /* Base styles for mobile */
 .price-list-container {
   flex: 1;
-  padding: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
 }
 
 .price-list-header {
@@ -266,8 +267,6 @@
 
 @media (min-width: 768px) {
   .price-list-container {
-    margin-left: 250px;
-    width: calc(100% - 270px);
     padding: 10px;
   }
 

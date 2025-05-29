@@ -39,6 +39,7 @@ const Layout = () => {
       <Navbar onToggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
       <div className="layout-content">
         <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
+
         <main className="main-content">
           <div className="content-wrapper">
             <Outlet />

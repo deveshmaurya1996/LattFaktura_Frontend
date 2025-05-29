@@ -150,7 +150,7 @@
 @media (min-width: 768px) {
   .sidebar {
     transform: translateX(0);
-    width: 220px;
+    width: 250px;
   }
   .sidebar-overlay {
     display: none;

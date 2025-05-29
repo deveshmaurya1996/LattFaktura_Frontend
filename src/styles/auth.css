@@ -207,8 +207,8 @@
 @media (max-width: 480px) {
   .auth-form {
     padding: 1rem;
-    max-width: 300px;
-    margin-top: 2rem;
+    max-width: 100%;
+    margin-top: 1rem;
   }
 
   .auth-title {
