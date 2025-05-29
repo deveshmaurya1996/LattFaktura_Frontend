@@ -5,35 +5,40 @@ import Sidebar from "./SideBar";
 import "./Layout.css";
 
 const Layout = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Default to true for desktop
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(isDesktop);
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsDesktop(window.innerWidth >= 768);
+      const desktop = window.innerWidth >= 768;
+      setIsDesktop(desktop);
+      // Always open on desktop, closed on mobile
+      setIsSidebarOpen(desktop);
     };
 
-    checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
+    checkScreenSize();
 
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
   const toggleSidebar = () => {
-    if (isDesktop) {
+    if (!isDesktop) {
       setIsSidebarOpen(!isSidebarOpen);
     }
   };
 
   const closeSidebar = () => {
-    setIsSidebarOpen(false);
+    if (!isDesktop) {
+      setIsSidebarOpen(false);
+    }
   };
 
   return (
     <div className="layout">
       <Navbar onToggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
       <div className="layout-content">
-        {isDesktop && <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />}
+        <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
         <main className="main-content">
           <div className="content-wrapper">
             <Outlet />

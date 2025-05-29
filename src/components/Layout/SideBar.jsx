@@ -131,17 +131,14 @@ const Sidebar = ({ isOpen, onClose }) => {
   };
 
   const isActive = (path) => location.pathname === path;
+  const isDesktop = window.innerWidth >= 768;
 
   return (
     <>
-      {isOpen && window.innerWidth < 768 && (
+      {!isDesktop && isOpen && (
         <div className="sidebar-overlay" onClick={onClose} />
       )}
-      <aside
-        className={`sidebar ${
-          isOpen || window.innerWidth >= 768 ? "open" : ""
-        }`}
-      >
+      <aside className={`sidebar ${isOpen || isDesktop ? "open" : ""}`}>
         <div className="sidebar-header">
           <h2>{t("sidebar.header")}</h2>
         </div>

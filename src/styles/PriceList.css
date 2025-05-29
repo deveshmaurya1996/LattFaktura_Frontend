@@ -1,9 +1,7 @@
 /* Base styles for mobile */
 .price-list-container {
-  width: 100%;
-  padding: 15px;
-  box-sizing: border-box;
-  min-height: calc(100vh - 60px);
+  flex: 1;
+  padding: 16px;
 }
 
 .price-list-header {
@@ -64,22 +62,15 @@
 }
 
 .price-list-table-container {
-  max-height: calc(100vh - 180px);
+  max-height: calc(100vh - 155px);
   overflow-y: auto;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.price-list-table-container::-webkit-scrollbar {
-  display: none;
+  flex: 1;
 }
 
 .price-list-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px;
 }
 
 .price-list-table th,
@@ -276,8 +267,8 @@
 @media (min-width: 768px) {
   .price-list-container {
     margin-left: 250px;
-    width: calc(100% - 250px);
-    padding: 20px;
+    width: calc(100% - 270px);
+    padding: 10px;
   }
 
   .price-list-header {
@@ -337,5 +328,8 @@
   .dropdown-menu {
     right: 0;
     min-width: 100px;
+  }
+  .price-list-table-container {
+    /* max-height: 100%; */
   }
 }

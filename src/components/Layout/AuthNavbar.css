@@ -26,16 +26,7 @@
 }
 
 .hamburger-btn {
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 4px;
-  transition: background-color 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: none;
 }
 
 .hamburger-btn:hover {
@@ -171,12 +162,29 @@
     display: none;
   }
 
+  .auth-navbar-logo {
+    display: none;
+  }
+
   .auth-navbar-container {
     padding: 0 0.5rem;
   }
 
   .auth-navbar-left {
     gap: 0.5rem;
+  }
+
+  .hamburger-btn {
+    background: none;
+    border: none;
+    color: rgb(39, 109, 222);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
