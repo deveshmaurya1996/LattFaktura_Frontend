@@ -13,13 +13,10 @@ export function useResizeBackground() {
       }
     };
 
-    // Initial call
     handleResize();
 
-    // Add event listener
     window.addEventListener("resize", handleResize);
 
-    // Cleanup
     return () => {
       window.removeEventListener("resize", handleResize);
     };
