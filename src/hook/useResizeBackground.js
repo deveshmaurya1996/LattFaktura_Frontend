@@ -6,7 +6,7 @@ export function useResizeBackground() {
 
   useEffect(() => {
     const handleResize = () => {
-      const newHeight = window.innerHeight + 100;
+      const newHeight = window.innerHeight + 150;
       setWindowHeight(newHeight);
       if (bgRef.current) {
         bgRef.current.style.height = `${newHeight}px`;
